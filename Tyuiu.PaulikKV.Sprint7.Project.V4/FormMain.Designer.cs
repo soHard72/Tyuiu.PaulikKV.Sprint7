@@ -31,9 +31,14 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
         {
             this.components = new System.ComponentModel.Container();
             this.panelBasic_PKV = new System.Windows.Forms.Panel();
+            this.textBoxFind_PKV = new System.Windows.Forms.TextBox();
+            this.labelFind_PKV = new System.Windows.Forms.Label();
+            this.buttonSave_PKV = new System.Windows.Forms.Button();
             this.groupBoxFiltr_PKV = new System.Windows.Forms.GroupBox();
+            this.comboBoxFiltr_PKV = new System.Windows.Forms.ComboBox();
             this.buttonDelFiltr_PKV = new System.Windows.Forms.Button();
             this.groupBoxSort_PKV = new System.Windows.Forms.GroupBox();
+            this.comboBoxSort_PKV = new System.Windows.Forms.ComboBox();
             this.buttonDelSort_PKV = new System.Windows.Forms.Button();
             this.dataGridViewTabl_PKV = new System.Windows.Forms.DataGridView();
             this.buttonInfo_PKV = new System.Windows.Forms.Button();
@@ -57,6 +62,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.toolTipProject_PKV = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialogData_PKV = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogTask_PKV = new System.Windows.Forms.SaveFileDialog();
             this.panelBasic_PKV.SuspendLayout();
             this.groupBoxFiltr_PKV.SuspendLayout();
             this.groupBoxSort_PKV.SuspendLayout();
@@ -71,6 +77,9 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBasic_PKV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelBasic_PKV.Controls.Add(this.textBoxFind_PKV);
+            this.panelBasic_PKV.Controls.Add(this.labelFind_PKV);
+            this.panelBasic_PKV.Controls.Add(this.buttonSave_PKV);
             this.panelBasic_PKV.Controls.Add(this.groupBoxFiltr_PKV);
             this.panelBasic_PKV.Controls.Add(this.groupBoxSort_PKV);
             this.panelBasic_PKV.Controls.Add(this.dataGridViewTabl_PKV);
@@ -83,10 +92,44 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.panelBasic_PKV.Size = new System.Drawing.Size(1314, 555);
             this.panelBasic_PKV.TabIndex = 0;
             // 
+            // textBoxFind_PKV
+            // 
+            this.textBoxFind_PKV.Location = new System.Drawing.Point(75, 65);
+            this.textBoxFind_PKV.Name = "textBoxFind_PKV";
+            this.textBoxFind_PKV.Size = new System.Drawing.Size(345, 22);
+            this.textBoxFind_PKV.TabIndex = 9;
+            this.textBoxFind_PKV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFind_PKV_KeyDown);
+            this.textBoxFind_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxFind_PKV_KeyUp);
+            // 
+            // labelFind_PKV
+            // 
+            this.labelFind_PKV.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.labelFind_PKV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelFind_PKV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFind_PKV.Location = new System.Drawing.Point(20, 65);
+            this.labelFind_PKV.Name = "labelFind_PKV";
+            this.labelFind_PKV.Size = new System.Drawing.Size(53, 22);
+            this.labelFind_PKV.TabIndex = 8;
+            this.labelFind_PKV.Text = "Поиск";
+            // 
+            // buttonSave_PKV
+            // 
+            this.buttonSave_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSave_PKV.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonSave_PKV.Location = new System.Drawing.Point(164, 10);
+            this.buttonSave_PKV.Name = "buttonSave_PKV";
+            this.buttonSave_PKV.Size = new System.Drawing.Size(112, 36);
+            this.buttonSave_PKV.TabIndex = 7;
+            this.buttonSave_PKV.Text = "Сохранить";
+            this.buttonSave_PKV.UseVisualStyleBackColor = true;
+            this.buttonSave_PKV.Click += new System.EventHandler(this.buttonSave_PKV_Click);
+            this.buttonSave_PKV.MouseEnter += new System.EventHandler(this.buttonSave_PKV_MouseEnter);
+            // 
             // groupBoxFiltr_PKV
             // 
             this.groupBoxFiltr_PKV.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBoxFiltr_PKV.AutoSize = true;
+            this.groupBoxFiltr_PKV.Controls.Add(this.comboBoxFiltr_PKV);
             this.groupBoxFiltr_PKV.Controls.Add(this.buttonDelFiltr_PKV);
             this.groupBoxFiltr_PKV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxFiltr_PKV.ForeColor = System.Drawing.Color.LightGray;
@@ -96,6 +139,14 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.groupBoxFiltr_PKV.TabIndex = 6;
             this.groupBoxFiltr_PKV.TabStop = false;
             this.groupBoxFiltr_PKV.Text = "Фильтрация";
+            // 
+            // comboBoxFiltr_PKV
+            // 
+            this.comboBoxFiltr_PKV.FormattingEnabled = true;
+            this.comboBoxFiltr_PKV.Location = new System.Drawing.Point(22, 43);
+            this.comboBoxFiltr_PKV.Name = "comboBoxFiltr_PKV";
+            this.comboBoxFiltr_PKV.Size = new System.Drawing.Size(255, 26);
+            this.comboBoxFiltr_PKV.TabIndex = 1;
             // 
             // buttonDelFiltr_PKV
             // 
@@ -113,6 +164,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             // 
             this.groupBoxSort_PKV.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBoxSort_PKV.AutoSize = true;
+            this.groupBoxSort_PKV.Controls.Add(this.comboBoxSort_PKV);
             this.groupBoxSort_PKV.Controls.Add(this.buttonDelSort_PKV);
             this.groupBoxSort_PKV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxSort_PKV.ForeColor = System.Drawing.Color.LightGray;
@@ -123,12 +175,20 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.groupBoxSort_PKV.TabStop = false;
             this.groupBoxSort_PKV.Text = "Сортировка";
             // 
+            // comboBoxSort_PKV
+            // 
+            this.comboBoxSort_PKV.FormattingEnabled = true;
+            this.comboBoxSort_PKV.Location = new System.Drawing.Point(22, 43);
+            this.comboBoxSort_PKV.Name = "comboBoxSort_PKV";
+            this.comboBoxSort_PKV.Size = new System.Drawing.Size(255, 26);
+            this.comboBoxSort_PKV.TabIndex = 2;
+            // 
             // buttonDelSort_PKV
             // 
             this.buttonDelSort_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDelSort_PKV.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonDelSort_PKV.ForeColor = System.Drawing.Color.Black;
-            this.buttonDelSort_PKV.Location = new System.Drawing.Point(74, 113);
+            this.buttonDelSort_PKV.Location = new System.Drawing.Point(74, 110);
             this.buttonDelSort_PKV.Name = "buttonDelSort_PKV";
             this.buttonDelSort_PKV.Size = new System.Drawing.Size(160, 26);
             this.buttonDelSort_PKV.TabIndex = 0;
@@ -143,6 +203,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.dataGridViewTabl_PKV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTabl_PKV.Location = new System.Drawing.Point(10, 94);
             this.dataGridViewTabl_PKV.Name = "dataGridViewTabl_PKV";
+            this.dataGridViewTabl_PKV.ReadOnly = true;
             this.dataGridViewTabl_PKV.RowHeadersWidth = 51;
             this.dataGridViewTabl_PKV.RowTemplate.Height = 24;
             this.dataGridViewTabl_PKV.Size = new System.Drawing.Size(939, 455);
@@ -153,7 +214,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.buttonInfo_PKV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInfo_PKV.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.buttonInfo_PKV.Cursor = System.Windows.Forms.Cursors.Help;
-            this.buttonInfo_PKV.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.buttonInfo_PKV.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.buttonInfo_PKV.FlatAppearance.BorderSize = 3;
             this.buttonInfo_PKV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonInfo_PKV.ForeColor = System.Drawing.Color.Black;
@@ -164,27 +225,31 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.buttonInfo_PKV.Text = "?";
             this.buttonInfo_PKV.UseVisualStyleBackColor = false;
             this.buttonInfo_PKV.Click += new System.EventHandler(this.buttonInfo_PKV_Click);
+            this.buttonInfo_PKV.MouseEnter += new System.EventHandler(this.buttonInfo_PKV_MouseEnter);
             // 
             // buttonHelp_PKV
             // 
             this.buttonHelp_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonHelp_PKV.Location = new System.Drawing.Point(306, 10);
+            this.buttonHelp_PKV.Location = new System.Drawing.Point(458, 10);
             this.buttonHelp_PKV.Name = "buttonHelp_PKV";
             this.buttonHelp_PKV.Size = new System.Drawing.Size(170, 36);
             this.buttonHelp_PKV.TabIndex = 2;
             this.buttonHelp_PKV.Text = "Краткое руководство";
             this.buttonHelp_PKV.UseVisualStyleBackColor = true;
             this.buttonHelp_PKV.Click += new System.EventHandler(this.buttonHelp_PKV_Click);
+            this.buttonHelp_PKV.MouseEnter += new System.EventHandler(this.buttonHelp_PKV_MouseEnter);
             // 
             // buttonGraf_PKV
             // 
             this.buttonGraf_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonGraf_PKV.Location = new System.Drawing.Point(163, 10);
+            this.buttonGraf_PKV.Location = new System.Drawing.Point(313, 10);
             this.buttonGraf_PKV.Name = "buttonGraf_PKV";
             this.buttonGraf_PKV.Size = new System.Drawing.Size(107, 35);
             this.buttonGraf_PKV.TabIndex = 1;
             this.buttonGraf_PKV.Text = "Графики";
             this.buttonGraf_PKV.UseVisualStyleBackColor = true;
+            this.buttonGraf_PKV.Click += new System.EventHandler(this.buttonGraf_PKV_Click);
+            this.buttonGraf_PKV.MouseEnter += new System.EventHandler(this.buttonGraf_PKV_MouseEnter);
             // 
             // buttonFile_PKV
             // 
@@ -198,6 +263,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.buttonFile_PKV.Text = "Файл";
             this.buttonFile_PKV.UseVisualStyleBackColor = false;
             this.buttonFile_PKV.Click += new System.EventHandler(this.buttonFile_PKV_Click);
+            this.buttonFile_PKV.MouseEnter += new System.EventHandler(this.buttonFile_PKV_MouseEnter);
             // 
             // panelInfo_PKV
             // 
@@ -219,12 +285,13 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDel_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDel_PKV.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonDel_PKV.Location = new System.Drawing.Point(1075, 80);
+            this.buttonDel_PKV.Location = new System.Drawing.Point(1077, 72);
             this.buttonDel_PKV.Name = "buttonDel_PKV";
-            this.buttonDel_PKV.Size = new System.Drawing.Size(110, 28);
+            this.buttonDel_PKV.Size = new System.Drawing.Size(134, 36);
             this.buttonDel_PKV.TabIndex = 3;
             this.buttonDel_PKV.Text = "Удалить";
             this.buttonDel_PKV.UseVisualStyleBackColor = true;
+            this.buttonDel_PKV.Click += new System.EventHandler(this.buttonDel_PKV_Click);
             // 
             // buttonAdd_PKV
             // 
@@ -232,12 +299,13 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAdd_PKV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAdd_PKV.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonAdd_PKV.Location = new System.Drawing.Point(1075, 25);
+            this.buttonAdd_PKV.Location = new System.Drawing.Point(1077, 27);
             this.buttonAdd_PKV.Name = "buttonAdd_PKV";
-            this.buttonAdd_PKV.Size = new System.Drawing.Size(110, 29);
+            this.buttonAdd_PKV.Size = new System.Drawing.Size(134, 34);
             this.buttonAdd_PKV.TabIndex = 2;
             this.buttonAdd_PKV.Text = "Добавить";
             this.buttonAdd_PKV.UseVisualStyleBackColor = true;
+            this.buttonAdd_PKV.Click += new System.EventHandler(this.buttonAdd_PKV_Click);
             // 
             // groupBoxData_PKV
             // 
@@ -362,6 +430,12 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
+            // toolTipProject_PKV
+            // 
+            this.toolTipProject_PKV.Tag = "";
+            this.toolTipProject_PKV.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipProject_PKV.ToolTipTitle = "Подсказка";
+            // 
             // openFileDialogData_PKV
             // 
             this.openFileDialogData_PKV.FileName = "openFileDialog1";
@@ -418,6 +492,12 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
         private System.Windows.Forms.TextBox textBoxKolvo_PKV;
         private System.Windows.Forms.ToolTip toolTipProject_PKV;
         private System.Windows.Forms.OpenFileDialog openFileDialogData_PKV;
+        private System.Windows.Forms.Button buttonSave_PKV;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogTask_PKV;
+        private System.Windows.Forms.TextBox textBoxFind_PKV;
+        private System.Windows.Forms.Label labelFind_PKV;
+        private System.Windows.Forms.ComboBox comboBoxFiltr_PKV;
+        private System.Windows.Forms.ComboBox comboBoxSort_PKV;
     }
 }
 
