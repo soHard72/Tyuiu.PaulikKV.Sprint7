@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tyuiu.PaulikKV.Sprint7.Project.V4.Lib;
+using System.IO;
 
 namespace Tyuiu.PaulikKV.Sprint7.Project.V4
 {
@@ -15,8 +17,14 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
         public FormMain()
         {
             InitializeComponent();
+            openFileDialogData_PKV.Filter = "Значения, разделённые запятыми (*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
 
+        static string openFilePath;
+        static int rows;
+        static int columns;
+        static string[,] matrix;
+        DataService ds = new DataService();
         private void buttonInfo_PKV_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
@@ -31,11 +39,36 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
 
         private void buttonFile_PKV_Click(object sender, EventArgs e)
         {
-            openFileDialogTask_PKV.ShowDialog();
-            openFilePath = openFileDialogTask_PKV.FileName;
-            textBoxInput_PKV.Text = File.ReadAllText(openFilePath);
-            groupBoxInput_PKV.Text = groupBoxInput_PKV.Text + " " + openFileDialogTask_PKV.FileName;
-            buttonDone_PKV.Enabled = true;
+            try
+            {
+                openFileDialogData_PKV.ShowDialog();
+                openFilePath = openFileDialogData_PKV.FileName;
+
+                matrix = ds.LoadDataFromFile(openFilePath);
+                rows = matrix.GetLength(0);
+                columns = matrix.GetLength(1);
+
+                dataGridViewTabl_PKV.Rows.Clear();
+                dataGridViewTabl_PKV.Columns.Clear();
+                dataGridViewTabl_PKV.RowCount = rows + 1;
+                dataGridViewTabl_PKV.ColumnCount = columns + 10;
+
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        dataGridViewTabl_PKV.Rows[i].Cells[j].Value = matrix[i, j];
+                        dataGridViewTabl_PKV.Rows[i].Cells[j].Selected = false;
+                    }
+                }
+                this.dataGridViewTabl_PKV.DefaultCellStyle.Font = new Font("Tahoma", 9);
+                dataGridViewTabl_PKV.AutoResizeColumns();
+            }
+            catch
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
+
