@@ -338,6 +338,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.textBoxMax_PKV.Name = "textBoxMax_PKV";
             this.textBoxMax_PKV.Size = new System.Drawing.Size(100, 26);
             this.textBoxMax_PKV.TabIndex = 9;
+            this.textBoxMax_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMax_PKV_KeyUp);
             // 
             // textBoxMin_PKV
             // 
@@ -346,6 +347,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.textBoxMin_PKV.Name = "textBoxMin_PKV";
             this.textBoxMin_PKV.Size = new System.Drawing.Size(100, 26);
             this.textBoxMin_PKV.TabIndex = 8;
+            this.textBoxMin_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxMin_PKV_KeyUp);
             // 
             // textBoxSrznach_PKV
             // 
@@ -354,14 +356,16 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.textBoxSrznach_PKV.Name = "textBoxSrznach_PKV";
             this.textBoxSrznach_PKV.Size = new System.Drawing.Size(100, 26);
             this.textBoxSrznach_PKV.TabIndex = 7;
+            this.textBoxSrznach_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSrznach_PKV_KeyUp);
             // 
             // textBoxSum_PKV
             // 
             this.textBoxSum_PKV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSum_PKV.Location = new System.Drawing.Point(211, 49);
+            this.textBoxSum_PKV.Location = new System.Drawing.Point(186, 49);
             this.textBoxSum_PKV.Name = "textBoxSum_PKV";
-            this.textBoxSum_PKV.Size = new System.Drawing.Size(100, 26);
+            this.textBoxSum_PKV.Size = new System.Drawing.Size(140, 26);
             this.textBoxSum_PKV.TabIndex = 6;
+            this.textBoxSum_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSum_PKV_KeyUp);
             // 
             // textBoxKolvo_PKV
             // 
@@ -370,6 +374,7 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             this.textBoxKolvo_PKV.Name = "textBoxKolvo_PKV";
             this.textBoxKolvo_PKV.Size = new System.Drawing.Size(100, 26);
             this.textBoxKolvo_PKV.TabIndex = 5;
+            this.textBoxKolvo_PKV.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxKolvo_PKV_KeyUp);
             // 
             // labelMax_PKV
             // 

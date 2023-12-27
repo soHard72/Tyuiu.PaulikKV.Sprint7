@@ -255,6 +255,298 @@ namespace Tyuiu.PaulikKV.Sprint7.Project.V4
             FormChart formChart = new FormChart();
             formChart.ShowDialog();
         }
+
+        private void textBoxKolvo_PKV_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewTabl_PKV.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int nugno = -1;
+                    for (int i = 0; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewTabl_PKV.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewTabl_PKV.Rows[i].Cells[j].Value != null)
+                            {
+                                if (dataGridViewTabl_PKV.Rows[i].Cells[j].Selected == true)
+                                {
+                                    nugno = j;
+                                    break;
+                                }
+                            }
+                            if (nugno > -1) break;
+                        }
+                    }
+
+                    int counter = 0;
+                    for (int r = 0; r < dataGridViewTabl_PKV.RowCount - 1; r++)
+                    {
+                        if (dataGridViewTabl_PKV.Rows[r].Cells[nugno].Selected == true) counter++;
+                    }
+                    textBoxKolvo_PKV.Text = Convert.ToString(counter);
+                }
+            }
+            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void textBoxSum_PKV_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewTabl_PKV.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int nugno = -1;
+                    for (int i = 0; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewTabl_PKV.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewTabl_PKV.Rows[i].Cells[j].Selected == true)
+                            {
+                                nugno = j;
+                                break;
+                            }
+                        }
+                        if (nugno > -1) break;
+                    }
+
+                    if (nugno > -1)
+                    {
+                        if (dataGridViewTabl_PKV.Rows[0].Cells[nugno].Selected != true)
+                        {
+                            double sum = 0;
+                            for (int i = 1; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                            {
+                                if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Selected == true)
+                                {
+                                    double cellValue;
+                                    if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value != null && double.TryParse(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString(), out cellValue))
+                                    {
+                                        dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value = cellValue;
+                                        sum += Convert.ToDouble(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString());
+                                    }
+                                }
+                            }
+                            if (sum != 0) textBoxSum_PKV.Text = Convert.ToString(sum);
+                            else
+                            {
+                                MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxSum_PKV.Text = "";
+
+                                textBoxSrznach_PKV.Text = "";
+                                textBoxMin_PKV.Text = "";
+                                textBoxMax_PKV.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxSum_PKV.Text = "";
+
+                            textBoxSrznach_PKV.Text = "";
+                            textBoxMin_PKV.Text = "";
+                            textBoxMax_PKV.Text = "";
+                        }
+                    }
+                    else MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void textBoxSrznach_PKV_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewTabl_PKV.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int nugno = -1;
+                    for (int i = 0; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewTabl_PKV.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewTabl_PKV.Rows[i].Cells[j].Selected == true)
+                            {
+                                nugno = j;
+                                break;
+                            }
+                        }
+                        if (nugno > -1) break;
+                    }
+
+                    if (nugno > -1)
+                    {
+                        if (dataGridViewTabl_PKV.Rows[0].Cells[nugno].Selected != true)
+                        {
+                            double srznach = 0; int kol = 0;
+                            for (int i = 1; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                            {
+                                if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Selected == true)
+                                {
+                                    double cellValue;
+                                    if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value != null && double.TryParse(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString(), out cellValue))
+                                    {
+                                        dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value = cellValue;
+                                        srznach += Convert.ToDouble(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString());
+                                        kol++;
+                                    }
+                                }
+                            }
+                            if (srznach != 0) textBoxSrznach_PKV.Text = Convert.ToString(Math.Round(srznach / kol, 5));
+                            else
+                            {
+                                MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxSrznach_PKV.Text = "";
+
+                                textBoxSrznach_PKV.Text = "";
+                                textBoxMin_PKV.Text = "";
+                                textBoxMax_PKV.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxSrznach_PKV.Text = "";
+
+                            textBoxSrznach_PKV.Text = "";
+                            textBoxMin_PKV.Text = "";
+                            textBoxMax_PKV.Text = "";
+                        }
+                    }
+                    else MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void textBoxMin_PKV_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewTabl_PKV.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int nugno = -1;
+                    for (int i = 0; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewTabl_PKV.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewTabl_PKV.Rows[i].Cells[j].Selected == true)
+                            {
+                                nugno = j;
+                                break;
+                            }
+                        }
+                        if (nugno > -1) break;
+                    }
+
+                    if (nugno > -1)
+                    {
+                        if (dataGridViewTabl_PKV.Rows[0].Cells[nugno].Selected != true)
+                        {
+                            double min = 9999999;
+                            for (int i = 1; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                            {
+                                if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Selected == true)
+                                {
+                                    double cellValue;
+                                    if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value != null && double.TryParse(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString(), out cellValue))
+                                    {
+                                        dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value = cellValue;
+                                        min = Math.Min(Convert.ToDouble(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString()), min);
+                                    }
+                                }
+                            }
+                            if (min != 9999999) textBoxMin_PKV.Text = Convert.ToString(min);
+                            else
+                            {
+                                MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxMin_PKV.Text = "";
+
+                                textBoxSrznach_PKV.Text = "";
+                                textBoxMin_PKV.Text = "";
+                                textBoxMax_PKV.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxMin_PKV.Text = "";
+
+                            textBoxSrznach_PKV.Text = "";
+                            textBoxMin_PKV.Text = "";
+                            textBoxMax_PKV.Text = "";
+                        }
+                    }
+                    else MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void textBoxMax_PKV_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (dataGridViewTabl_PKV.RowCount != 0)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int nugno = -1;
+                    for (int i = 0; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridViewTabl_PKV.ColumnCount - 1; j++)
+                        {
+                            if (dataGridViewTabl_PKV.Rows[i].Cells[j].Selected == true)
+                            {
+                                nugno = j;
+                                break;
+                            }
+                        }
+                        if (nugno > -1) break;
+                    }
+
+                    if (nugno > -1)
+                    {
+                        if (dataGridViewTabl_PKV.Rows[0].Cells[nugno].Selected != true)
+                        {
+                            double max = -9999999;
+                            for (int i = 1; i < dataGridViewTabl_PKV.RowCount - 1; i++)
+                            {
+
+                                if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Selected == true)
+                                {
+                                    double cellValue;
+                                    if (dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value != null && double.TryParse(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString(), out cellValue))
+                                    {
+                                        dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value = cellValue;
+                                        max = Math.Max(Convert.ToDouble(dataGridViewTabl_PKV.Rows[i].Cells[nugno].Value.ToString()), max);
+                                    }
+                                }
+                            }
+                            if (max != -9999999) textBoxMax_PKV.Text = Convert.ToString(max);
+                            else
+                            {
+                                MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxMin_PKV.Text = "";
+
+                                textBoxSrznach_PKV.Text = "";
+                                textBoxMin_PKV.Text = "";
+                                textBoxMax_PKV.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, выберите диапозон ячеек с числами", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxMin_PKV.Text = "";
+
+                            textBoxSrznach_PKV.Text = "";
+                            textBoxMin_PKV.Text = "";
+                            textBoxMax_PKV.Text = "";
+                        }
+                    }
+                    else MessageBox.Show("Не выбран столбец", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
 
